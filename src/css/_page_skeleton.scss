@@ -1,0 +1,349 @@
+@use 'custom_scrollbar' as *;
+
+header {
+	position: sticky;
+	top: 0;
+	left: 0;
+	right: 0;
+	background: linear-gradient(var(--header-background) 50%, transparent 50%);
+	color: var(--header-font-color);
+	width: 100%;
+	height: var(--header-height);
+	min-height: var(--header-height);
+	max-height: var(--header-height);
+	user-select: none;
+	z-index: 998;
+
+	nav {
+		display: flex;
+		flex-direction: row;
+		justify-content: space-between;
+		align-items: start;
+		align-content: stretch;
+		width: 100%;
+		height: 100%;
+
+		#home {
+			text-decoration: none;
+			display: flex;
+			flex-direction: row;
+			height: 100%;
+			pointer-events: none;
+			z-index: 999;
+
+			#logo {
+				height: 100%;
+				aspect-ratio: 1/1;
+				object-fit: contain;
+				border-bottom-right-radius: 50%;
+				image-rendering: -moz-crisp-edges;
+				image-rendering: pixelated;
+				pointer-events: auto;
+				content: var(--logo-url);
+			}
+
+			span {
+				font-size: 24px;
+				font-weight: bold;
+				line-height: 100%;
+				height: 50%;
+				margin: 0;
+				padding: 8px 0.5rem;
+				pointer-events: auto;
+			}
+		}
+
+		div#menu {
+			display: flex;
+			flex-direction: column;
+			justify-content: stretch;
+			align-items: stretch;
+			align-content: stretch;
+			width: 100%;
+			height: 100%;
+			padding-right: 20px;
+
+			div#desktop-menu,
+			div#mobile-menu {
+				display: flex;
+				flex-direction: row;
+				justify-content: end;
+				align-items: center;
+				align-content: center;
+				width: 100%;
+				height: 50%;
+			}
+
+			div#desktop-menu {
+				div#pages {
+					flex: 1;
+					display: flex;
+					flex-direction: row;
+					justify-content: end;
+					align-items: center;
+					gap: var(--footer-font-size);
+					height: 50%;
+					margin: 0 var(--header-font-size);
+					padding: var(--header-padding);
+				}
+
+				div#theme {
+					background-image: var(--theme-icon-url);
+					background-repeat: no-repeat;
+					background-position: center;
+					background-size: contain;
+					image-rendering: -moz-crisp-edges;
+					image-rendering: pixelated;
+					border-radius: 50%;
+					width: var(--header-content-height);
+					height: var(--header-content-height);
+					font-size: var(--header-font-size);
+					line-height: var(--header-font-size);
+				}
+			}
+
+			div#mobile-menu {
+				display: none;
+			}
+		}
+	}
+}
+
+main {
+	@include custom-scrollbar;
+
+	min-height: 0;
+	max-height: 100%;
+	height: max-content;
+	width: 100%;
+	margin-top: 20px;
+	margin-bottom: auto;
+	padding: 0 92px;
+	overflow-y: auto;
+	scrollbar-gutter: stable both-edges;
+	overscroll-behavior: none;
+
+	article {
+		width: 100%;
+		display: flex;
+		flex-direction: column;
+		word-break: auto-phrase;
+		text-wrap-mode: wrap;
+		text-wrap-style: pretty;
+
+		p,
+		li,
+		td,
+		th,
+		blockquote {
+			word-break: auto-phrase;
+			text-wrap-mode: wrap;
+			text-wrap-style: pretty;
+		}
+
+		code {
+			background: var(--main-background-two);
+			padding: 1px 3px;
+			border-radius: 4px;
+			box-decoration-break: clone;
+			-webkit-box-decoration-break: clone;
+		}
+
+		pre {
+			@include custom-scrollbar;
+
+			position: relative;
+			display: block;
+			background: var(--main-background-two);
+			border-radius: 6px;
+			margin: 1em 0;
+			overflow: hidden;
+
+			code {
+				display: block;
+				min-width: 0;
+				max-width: 100%;
+				width: fit-content;
+				background: none;
+				padding: 12px 16px;
+				border-radius: 6px;
+				white-space: pre;
+				overflow-x: auto;
+				overflow-y: hidden;
+			}
+
+			.copy-btn {
+				position: absolute;
+				top: 8px;
+				right: 8px;
+				width: 32px;
+				height: 32px;
+				border: none;
+				border-radius: 4px;
+				padding: 4px;
+				background: transparent url('/assets/images/copy-x12.png') no-repeat
+					center / 24px;
+				background-color: var(--header-background);
+				image-rendering: -moz-crisp-edges;
+				image-rendering: pixelated;
+				cursor: pointer;
+				opacity: 0;
+				transition: opacity 0.2s;
+			}
+
+			&:hover .copy-btn {
+				opacity: 0.6;
+			}
+
+			.copy-btn:hover {
+				opacity: 1;
+			}
+
+			.copy-btn.copied {
+				opacity: 1;
+				background-image: url('/assets/images/checkmark-x12.png');
+			}
+		}
+
+		table {
+			background-color: var(--main-background-one);
+			display: block;
+			width: 100%;
+			border-collapse: separate;
+			border-spacing: 0;
+			border-radius: 6px;
+			overflow-x: auto;
+			overflow-y: hidden;
+			margin: 1em 0;
+			@include custom-scrollbar;
+
+			th,
+			td {
+				padding: 6px 12px;
+				vertical-align: middle;
+			}
+
+			th:last-child,
+			td:last-child {
+				border-right: none;
+			}
+
+			tr:last-child td {
+				border-bottom: none;
+			}
+
+			th {
+				background-color: var(--main-background-two);
+				font-weight: bold;
+			}
+
+			tr:nth-child(odd) {
+				background-color: var(--muted);
+			}
+		}
+
+		li {
+			display: list-item;
+			margin-bottom: 10px;
+
+			&:last-of-type {
+				margin-bottom: 0;
+			}
+		}
+	}
+
+	p {
+		text-align: start;
+	}
+}
+
+footer {
+	background: var(--footer-background);
+	color: var(--footer-font-color);
+	display: flex;
+	flex-direction: row;
+	align-items: center;
+	justify-content: space-evenly;
+	width: 100%;
+	height: var(--footer-height);
+	min-height: var(--footer-height);
+	max-height: var(--footer-height);
+	margin-top: calc(var(--header-height) / 2);
+	user-select: none;
+
+	span,
+	a {
+		color: var(--footer-font-color);
+		text-decoration: none;
+		text-align: center;
+		font-size: var(--footer-font-size);
+		height: var(--footer-font-size);
+	}
+
+	a.github-link {
+		.github-icon {
+			fill: var(--footer-font-color);
+		}
+
+		&:hover,
+		&:focus,
+		&:active,
+		&:hover *,
+		&:focus *,
+		&:active * {
+			color: var(--primary);
+		}
+	}
+}
+
+a.github-link {
+	color: var(--font-color);
+	display: inline-flex;
+	justify-items: center;
+	align-items: center;
+	align-content: stretch;
+	gap: 8px;
+	width: fit-content;
+	height: 24px;
+
+	.github-icon {
+		fill: var(--font-color);
+	}
+
+	&:hover,
+	&:focus,
+	&:active,
+	&:hover *,
+	&:focus *,
+	&:active * {
+		color: var(--primary);
+		cursor: pointer;
+	}
+}
+
+@media only screen and (max-width: 640px) {
+	header {
+		background: linear-gradient(
+			var(--header-background) 50%,
+			var(--main-background-one) 50%
+		);
+
+		nav {
+			div#menu {
+				div#desktop-menu {
+					div#pages {
+						display: none;
+					}
+				}
+
+				div#mobile-menu {
+					display: flex;
+				}
+			}
+		}
+	}
+
+	main {
+		padding: 0 20px;
+	}
+}

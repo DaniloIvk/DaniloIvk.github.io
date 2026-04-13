@@ -1,0 +1,149 @@
+@use 'colours' as *;
+@use 'custom_scrollbar' as *;
+
+:root {
+	--body-font-size: 18px;
+	--header-font-size: 24px;
+	--footer-font-size: 18px;
+
+	--header-height: 80px;
+	--footer-height: 80px;
+	--header-content-height: 32px;
+	--header-padding: 4px 0;
+
+	--background-image: url('../../assets/images/background.webp');
+}
+
+html {
+	@include custom-scrollbar-hidden;
+
+	background-color: black;
+	min-width: 320px;
+	min-height: 320px;
+	overscroll-behavior: none;
+
+	&:before {
+		content: '';
+		background: var(--background-image);
+		background-repeat: no-repeat;
+		background-size: cover;
+		background-position: center;
+		position: absolute;
+		top: 0;
+		left: 0;
+		right: 0;
+		bottom: 0;
+		opacity: var(--background-image-opacity);
+		z-index: -1;
+	}
+}
+
+body {
+	display: flex;
+	flex-direction: column;
+	background: linear-gradient(
+		var(--main-background-one),
+		var(--main-background-two)
+	);
+	color: var(--font-color);
+	min-width: inherit;
+	max-width: 100dvw;
+	min-height: inherit;
+	max-height: calc(100dvh + var(--footer-height));
+	width: 100dvw;
+	height: calc(100dvh + var(--footer-height));
+	margin: 0;
+	padding: 0;
+	overflow-x: hidden;
+	scrollbar-width: none;
+
+	* {
+		font-size: 18px;
+		line-height: 24px;
+		padding: 0;
+		margin: 0;
+
+		&::selection {
+			background-color: var(--primary);
+			color: var(--darkgray);
+		}
+	}
+
+	h1,
+	h2,
+	h3,
+	h4 {
+		font-weight: bold;
+		line-height: 100%;
+		margin: 1em 0 0.5em 0;
+		padding: 0;
+	}
+
+	h1 {
+		font-size: 30px;
+	}
+
+	h2 {
+		font-size: 26px;
+	}
+
+	h3 {
+		font-size: 22px;
+	}
+
+	h4 {
+		font-size: 18px;
+		font-weight: normal;
+		font-style: italic;
+	}
+
+	:is(h1, h2, h3, h4) + :is(h1, h2, h3, h4) {
+		margin: 1em 0 0.25em 0;
+	}
+
+	h1 + h2,
+	h2 + h3,
+	h3 + h4 {
+		margin: 0.25em 0 0.5em 0;
+	}
+
+	a :not(h1, h2, h3, h4) + p {
+		margin-top: 1em;
+	}
+
+	a {
+		color: var(--primary);
+		text-decoration: none;
+
+		&:hover,
+		&:focus,
+		&:active {
+			color: var(--secondary);
+		}
+
+		&.plaintext {
+			color: var(--font-color);
+
+			&:hover,
+			&:focus,
+			&:active {
+				color: var(--font-color);
+				text-decoration: underline;
+			}
+		}
+	}
+
+	hr {
+		margin: 20px 0;
+		border: none;
+		border-top: 2px solid var(--font-color);
+	}
+}
+
+* {
+	font-family: 'Courier new', monospace;
+	font-size: var(--body-font-size);
+	position: relative;
+	box-sizing: border-box;
+	transition: color 0.2s;
+}

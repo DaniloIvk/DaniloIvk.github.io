@@ -1,0 +1,90 @@
+@use 'sass:color';
+
+$white: #ffffff;
+$black: #000000;
+$grass_green: #58a531;
+$light_green: #5fb235;
+$sky_blue: #69aeea;
+$cloud_white: #eeeeee;
+$cloud_gray: #dddddd;
+$stone_gray: #808080;
+$sword_gray: #404040;
+
+$morning_green: #34611d;
+$morning_blue: #1969af;
+
+$_30_gray: #303030;
+$_55_gray: #555555;
+$_a0_gray: #a0a0a0;
+$_d0_gray: #d0d0d0;
+$_f0_gray: #f0f0f0;
+
+$barely_black: color.adjust($black, $alpha: -0.2);
+$barely_white: color.adjust($cloud_white, $alpha: -0.2);
+
+$partial_black: color.adjust($black, $alpha: -0.3);
+$partial_white: color.adjust($cloud_white, $alpha: -0.3);
+
+$darken: color.adjust($black, $alpha: -0.7);
+$lighten: color.adjust($cloud_white, $alpha: -0.7);
+
+$transparent: #00000000;
+
+:root,
+html.light {
+	--primary: #{$morning_blue};
+	--secondary: #{$morning_green};
+
+	--font-color: #{$black};
+	--header-font-color: #{$sword_gray};
+	--footer-font-color: #{$_a0_gray};
+
+	--gray: #{$cloud_white};
+	--lightgray: #{$_f0_gray};
+	--darkgray: #{$cloud_gray};
+
+	--main-background-one: #{$partial_white};
+	--main-background-two: #{$barely_white};
+	--background-image-opacity: 0.5;
+
+	--header-background: #{$cloud_white};
+	--footer-background: #{$cloud_gray};
+
+	--muted: #{$lighten};
+
+	--logo-url: url('/assets/images/logo_light.png');
+
+	--theme-icon-url: url('/assets/images/theme-light-x16.png');
+}
+
+html.dark {
+	--primary: #{$grass_green};
+	--secondary: #{$sky_blue};
+
+	--font-color: #{$cloud_gray};
+	--header-font-color: #{$_d0_gray};
+	--footer-font-color: #{$stone_gray};
+
+	--gray: #{$_55_gray};
+	--lightgray: #{$stone_gray};
+	--darkgray: #{$_30_gray};
+
+	--main-background-one: #{$partial_black};
+	--main-background-two: #{$barely_black};
+	--background-image-opacity: 1;
+
+	--header-background: var(--darkgray);
+	--footer-background: #{$black};
+
+	--muted: #{$darken};
+
+	--logo-url: url('/assets/images/logo.png');
+
+	--theme-icon-url: url('/assets/images/theme-dark-x16.png');
+
+	color-scheme: light dark;
+}
+
+html.system {
+	--theme-icon-url: url('/assets/images/theme-system-x16.png');
+}
