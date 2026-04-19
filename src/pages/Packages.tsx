@@ -23,7 +23,9 @@ function Packages() {
 				githubUrl='https://github.com/DaniloIvk/ts-traits'
 			>
 				A lightweight, strictly typed utility for class composition
-				(Traits/Mixins) in TypeScript. It allows you to combine a Base Class
+				(Traits/Mixins) in TypeScript.
+				<br />
+				It allows you to combine a Base Class
 				with multiple Trait Classes.
 			</Package>
 		</PageSkeleton>
